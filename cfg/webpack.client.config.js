@@ -1,11 +1,14 @@
 const path = require('path')
-const {HotModuleReplacementPlugin} = require('webpack')
+const {HotModuleReplacementPlugin, DefinePlugin} = require('webpack')
 const { CleanWebpackPlugin} =require ('clean-webpack-plugin')
 
 const NODE_ENV = process.env.NODE_ENV
 
 const IS_DEV = NODE_ENV === 'development'
 const IS_PROD = NODE_ENV === 'production'
+const GLOBAL_CSS_REGEXP=/\.global\.css$/;
+const DEV_PLUGINS = [new CleanWebpackPlugin(),new HotModuleReplacementPlugin()]
+const COMMON_PLUGINS =[ new DefinePlugin({'process.env.CLIENT_ID':`'${process.env.CLIENT_ID}'`})]
 
 function setupDevtool(){
     if (IS_DEV) return 'eval'
@@ -49,9 +52,14 @@ publicPath:'/static/'
             },
           
         }
-        }
+        },
        /*  'less-loader', */
-    ],
+],
+ exclude:GLOBAL_CSS_REGEXP
+    },
+    {
+        test:GLOBAL_CSS_REGEXP,
+        use:['style-loader', 'css-loader']
     }
     ]
     },
@@ -59,8 +67,5 @@ publicPath:'/static/'
    
     devtool:setupDevtool(),
     plugins: IS_DEV 
-    ? [
-        new CleanWebpackPlugin(),
-        new HotModuleReplacementPlugin(),
-    ]: [],
+    ? DEV_PLUGINS.concat(COMMON_PLUGINS): COMMON_PLUGINS
 } 
