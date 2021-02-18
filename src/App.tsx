@@ -9,12 +9,16 @@ import Dropdown from './shared/Dropdown/Dropdown'
 import { useToken } from './hooks/useToken'
 import {TokenContext} from './shared/context/TokenContext'
 import {UserContextProvider} from './shared/context/userContext'
+import { commentContext } from './shared/Content/commentContext'
  function AppComponent() {
-     
+    const[commentValue, setCommentValue] = useState('')
     const [token] = useToken()
+    const CommentProvider = commentContext.Provider
    
     return (
-       <TokenContext.Provider value={token}>
+        <CommentProvider value={{value:commentValue,
+        onChange:setCommentValue}}>
+            <TokenContext.Provider value={token}>
            <UserContextProvider >
            <Layout>
             <Header/>
@@ -29,6 +33,9 @@ import {UserContextProvider} from './shared/context/userContext'
            </UserContextProvider>
 
        </TokenContext.Provider>
+
+        </CommentProvider>
+       
        
     )
 }

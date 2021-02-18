@@ -1,0 +1,9 @@
+.Post {
+    position: absolute;
+    color: blue;
+    z-index: 1000;
+    top:10%;
+    left:40%;
+    background-color: white;
+    
+}

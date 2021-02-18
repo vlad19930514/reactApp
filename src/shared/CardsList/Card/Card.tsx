@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './card.css'
+import CardTitle from './CardTitle/CardTitle'
 import Menu from './Menu/Menu'
 function Card() {
     return (
@@ -20,11 +21,7 @@ function Card() {
                         4 часа назад
                         </span>
                 </div>
-                <h2 className={styles.title}>
-                    <a href="#post-url" className={styles.postLink}>
-                        Следует отметить, что новая модель организационной деятельности Следует
-                    </a>
-                </h2>
+                <CardTitle/>
             </div>
             <div className={styles.preview}>
                 <img className={styles.previewImg}
