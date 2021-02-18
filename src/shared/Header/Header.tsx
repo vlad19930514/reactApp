@@ -1,16 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import SearchBlock from './SearchBlock/SearchBlock'
 import SortBlock from './SortBlock/SortBlock'
 import ThreadTitle from './ThreadTitle/ThreadTitle'
 import styles from './header.css'
 import UserBlock from './UserBlock/UserBlock'
+
+
 function Header() {
+  
+  
     return (
         <header className={styles.header}>
-            <SearchBlock/>
+            
+                <SearchBlock />
+           
+            
             <ThreadTitle/>
             <SortBlock/>
-            <UserBlock/>
+            
         </header>
     )
 }

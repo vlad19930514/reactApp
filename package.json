@@ -7,12 +7,10 @@
     "build:dev": "env NODE_ENV=development webpack --config webpack.config.js",
     "build:prod": "env NODE_ENV=production webpack --config webpack.config.js",
     "test": "jest",
-    "dev": "env NODE_ENV=development CLIENT_ID=hVwTTCVLQpFoMA node ./bin/dev.js",
+    "dev": "env NODE_ENV=development CLIENT_ID=hVwTTCVLQpFoMA   node ./bin/dev.js",
     "start": "webpack --watch"
   },
   "proxy": "https://www.reddit.com",
-  
-
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -46,6 +44,7 @@
     "webpack-node-externals": "^2.5.2"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "express": "^4.17.1",
     "react": "^17.0.1",
