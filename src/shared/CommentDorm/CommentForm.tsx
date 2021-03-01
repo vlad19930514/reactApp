@@ -1,7 +1,11 @@
 import React, { ChangeEvent, FormEvent, useContext, useState } from 'react'
+import { useStore } from 'react-redux';
+
 import { commentContext } from '../Content/commentContext';
 
-function CommentForm() {
+export function CommentForm() { 
+    const store = useStore()
+  store.getState()
  const {value, onChange} = useContext(commentContext)
    
     function handleChange(event:ChangeEvent<HTMLTextAreaElement>){
@@ -14,6 +18,7 @@ function CommentForm() {
     }
     return (
         <form onSubmit={handleSubmit}>
+            
             <textarea value={value} onChange={handleChange}/>
             <button type="submit">комментировать</button>
             
@@ -21,4 +26,4 @@ function CommentForm() {
     )
 }
 
-export default CommentForm
+

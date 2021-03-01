@@ -5,5 +5,9 @@ import { App } from '../App'
 
 
 window.addEventListener('load', ()=>{
-    ReactDOM.hydrate(<App/>, document.getElementById('react_root'))
+    ReactDOM.hydrate(
+       
+        <App />
+      
+     , document.getElementById('react_root'))
 })

@@ -10,34 +10,76 @@ import { useToken } from './hooks/useToken'
 import {TokenContext} from './shared/context/TokenContext'
 import {UserContextProvider} from './shared/context/userContext'
 import { commentContext } from './shared/Content/commentContext'
+import { Provider } from 'react-redux'
+import { createStore, Reducer } from 'redux'
+
+import { composeWithDevTools } from 'redux-devtools-extension'
+
+
+export type RootState = {
+    commentText:string
+}
+ const initialState:RootState = {
+    commentText:'adsfsvsa'
+}
+const rootReducer:Reducer<RootState> =(state = initialState,action)=>{
+    return state
+} 
+const store = createStore(rootReducer, composeWithDevTools())
+
+
  function AppComponent() {
-    const[commentValue, setCommentValue] = useState('')
-    const [token] = useToken()
-    const CommentProvider = commentContext.Provider
-   
+
+    const[commentValue, setCommentValue] = useState('') 
+    const [token] = useToken() 
+   const CommentProvider = commentContext.Provider
+    const TokenContextProvider = TokenContext.Provider
+    
     return (
-        <CommentProvider value={{value:commentValue,
+        <Provider store={store}>
+<CommentProvider value={{value:commentValue,
         onChange:setCommentValue}}>
-            <TokenContext.Provider value={token}>
-           <UserContextProvider >
-           <Layout>
-            <Header/>
-            <Content>
-            <CardsList/>
-            </Content>
-            <br/>
-            <Dropdown button={<button>Test</button>}>
-                <ul><li>1</li></ul>
-            </Dropdown>
+            <TokenContextProvider value={token}>
+           <UserContextProvider > 
+           
+
+<Layout>
+           
+<Header/>
+<Content>
+<CardsList/>
+</Content> 
+<br/>
+<Dropdown button={<button>Test</button>}>
+    <ul><li>1</li></ul>
+</Dropdown> 
         </Layout>
+
+        
+          
+        
            </UserContextProvider>
 
-       </TokenContext.Provider>
+       </TokenContextProvider>
 
-        </CommentProvider>
+        </CommentProvider> 
+
+        </Provider>
+        
+
+ 
+
+
+
+ 
+
+
+         
+        
        
        
     )
 }
 
-export const App= hot(()=><AppComponent/>)
+export const App= hot(()=>  <AppComponent/>)
+

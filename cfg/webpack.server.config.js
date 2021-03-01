@@ -38,9 +38,9 @@ module.exports = {
                 mode:'local',
                 
                  localIdentName:'[name]_[local]--[hash:base64:5]',
-                 exportOnlyLocals:true 
+                 exportOnlyLocal:true 
             },
-            
+           
         }
         },
         
